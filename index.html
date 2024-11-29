@@ -137,10 +137,12 @@
             font-size: 1.1rem;
             border-radius: var(--border-radius);
             cursor: pointer;
-            transition: background-color var(--transition-speed);
+            transition: all var(--transition-speed);
             width: 100%;
             margin-top: 1rem;
             font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
         }
 
         button:hover {
@@ -167,6 +169,7 @@
             border: 2px dashed #ddd;
             white-space: pre-wrap;
             position: relative;
+            min-height: 150px;
         }
 
         .preview h2 {
@@ -204,6 +207,18 @@
 
         .copy-btn.active:hover {
             background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .error {
+            border-color: var(--error-color) !important;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
         }
 
         @media (max-width: 600px) {
@@ -236,6 +251,7 @@
                 <option value="habits">Game-Changing Habits</option>
                 <option value="rules">Rules I Live By</option>
             </select>
+            <div class="error-message">Please select a listicle type</div>
         </div>
 
         <div class="form-group">
@@ -246,6 +262,7 @@
         <div class="form-group">
             <label for="topic">Your Industry/Topic</label>
             <input type="text" id="topic" placeholder="e.g., Tech Leadership, Product Management" required>
+            <div class="error-message">Please enter your industry/topic</div>
         </div>
 
         <div class="form-group">
@@ -379,7 +396,40 @@
             }
         }
 
+        function validateForm() {
+            const listType = document.getElementById('listType');
+            const topic = document.getElementById('topic');
+            let isValid = true;
+
+            // Reset previous error states
+            document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            if (!listType.value) {
+                listType.classList.add('error');
+                listType.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            if (!topic.value.trim()) {
+                topic.classList.add('error');
+                topic.nextElementSibling.style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
         function generateListicle() {
+            console.log('Generate button clicked'); // Debug log
+
+            if (!validateForm()) {
+                console.log('Form validation failed'); // Debug log
+                return;
+            }
+
+            console.log('Form validation passed'); // Debug log
+
             const type = document.getElementById('listType').value;
             const count = parseInt(document.getElementById('itemCount').value);
             const topic = document.getElementById('topic').value;
@@ -387,10 +437,7 @@
             const emojiLevel = parseInt(document.getElementById('emojiLevel').value);
             const humbleLevel = parseInt(document.getElementById('humbleLevel').value);
 
-            if (!type || !topic) {
-                alert('Please fill in all required fields!');
-                return;
-            }
+            console.log('Generating listicle with:', { type, count, topic, buzzwordLevel, emojiLevel, humbleLevel }); // Debug log
 
             const template = templates[type];
             if (!template) return;
@@ -426,6 +473,8 @@
             post += '\n\nAgree? 🤔\n\n';
             post += `#${topic.replace(/\s+/g, '')} #CareerGrowth #Innovation`;
 
+            console.log('Generated content:', post); // Debug log
+
             document.getElementById('previewContent').innerText = post;
             addSparkles();
             updateCopyButton(true);
@@ -442,6 +491,7 @@
 
         // Generate button click handler
         document.getElementById('generateBtn').addEventListener('click', generateListicle);
+        console.log('Added click handler to generate button'); // Debug log
 
         // Copy button functionality
         document.getElementById('copyBtn').addEventListener('click', function() {
@@ -486,6 +536,9 @@
 
         // Initialize copy button state
         updateCopyButton(false);
+
+        // Add debug logs for initialization
+        console.log('Script initialized');
     </script>
 </body>
 </html>
