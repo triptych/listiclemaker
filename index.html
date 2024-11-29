@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Previous head content remains the same until the script tag -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Listicle Maker 🚀</title>
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAVNQTFRFAAAA2dnZubm5n5+fwMDAvb29vLy8u7u7urq6ubm5uLi4t7e3tra2tbW1tLS0s7OzsrKysbGxsLCwr6+vrq6ura2trKysq6urqqqqqampqKiop6enpqampaWlpKSko6OjoqKioaGhoKCgn5+fnp6enZ2dnJycm5ubmpqamZmZmJiYl5eXlpaWlZWVlJSUk5OTkpKSkZGRkJCQj4+Pjo6OjY2NjIyMi4uLioqKiYmJiIiIh4eHhoaGhYWFhISEg4ODgoKCgYGBgICAfn5+fX19fHx8e3t7enp6eXl5eHh4d3d3dnZ2dXV1dHR0c3NzcnJycXFxcHBwb29vbm5ubW1tbGxsa2trampqaWlpaGhoZ2dnZmZmZWVlZGRkY2NjYmJiYWFhYGBgX19fXl5eXV1dXFxcW1tbWlpaWVlZWFhYV1dXVlZWVVVVVFRUU1NTUlJSUVFRUFBQT09PTk5OTU1NTExMS0tLSkpKSUlJSEhIR0dHRkZGRUVFREREQ0NDQkJCQUFBQEBAazmvVQAAAE50Uk5TAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNmgvQjgAAAAFiS0dETPps3rYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAADpSURBVDjLY2AYBcMNMDIxs7CysbMzMXIwcHLx8PLx8wsICgkLCYuKiYtLSEpJS8vIyskrKCopq6iqqWtoamnr6OrpGxgaGZuYmplbWFpZ29ja2Ts4Ojm7uLq5e3h6efsABXz9/AMCg4JDQsPCIyKjomNi4+ITEpOSU1LT0jMyMrOyc3Lz8gsKi4pLSsvKKyqrqmtq6+obGpuaW1rb2js6u7p7evv6JwycNHnK1GnTZ8ycNXvO3HnzFyxctHjJ0mXLV6xcFbB6zdp16zds3LR5y9Zt23fs3LV7z959+w8cPHT4yNFjx0+cPHX6zNlzAGJmP1f0xisoAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTA0LTI4VDAyOjI1OjQ3KzAwOjAwf2yb6QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wNC0yOFQwMjoyNTo0NyswMDowMA4xI1UAAAAodEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IEFwcGxlIEluYy4sIDIwMjEt3Xu3agAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAERpc3BsYXkgUDMgdjQuNiBwcm9maWxlADs/ZYkAAAAASUVORK5CYII=">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Previous styles remain exactly the same */
+        :root {
+            --primary-color: #0a66c2;
+            --secondary-color: #7f54b3;
+            --background-color: #f3f2ef;
+            --text-color: #333333;
+            --accent-color: #e7a33e;
+            --success-color: #057642;
+            --error-color: #cc3340;
+            --border-radius: 8px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .rainbow-text {
+            animation: rainbow 8s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7f00; }
+            28% { color: #ffff00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #4b0082; }
+            85% { color: #8b00ff; }
+            100% { color: #ff0000; }
+        }
+
+        .emoji-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed);
+            font-family: 'Inter', sans-serif;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .range-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: var(--border-radius);
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background var(--transition-speed);
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+            width: 100%;
+            margin-top: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        button:hover {
+            background: var(--secondary-color);
+        }
+
+        #generateBtn:hover {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-1deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(1deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .preview {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border: 2px dashed #ddd;
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .preview h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkle 1s linear forwards;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .copy-btn {
+            background: var(--secondary-color);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .copy-btn.active {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .copy-btn.active:hover {
+            background: var(--primary-color);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji-title">✍️</div>
+        <h1>LinkedIn <span class="rainbow-text">Listicle</span> Maker</h1>
+
+        <div class="form-group">
+            <label for="listType">Choose Your Listicle Type</label>
+            <select id="listType" required>
+                <option value="">Select a type...</option>
+                <option value="lessons">Things I Learned</option>
+                <option value="mistakes">Mistakes to Avoid</option>
+                <option value="signs">Signs You're Ready</option>
+                <option value="habits">Game-Changing Habits</option>
+                <option value="rules">Rules I Live By</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="itemCount">Number of Points (3-10)</label>
+            <input type="number" id="itemCount" min="3" max="10" value="5" required>
+        </div>
+
+        <div class="form-group">
+            <label for="topic">Your Industry/Topic</label>
+            <input type="text" id="topic" placeholder="e.g., Tech Leadership, Product Management" required>
+        </div>
+
+        <div class="form-group">
+            <label for="buzzwordLevel">Buzzword Intensity</label>
+            <div class="range-wrapper">
+                <input type="range" id="buzzwordLevel" min="1" max="5" value="3">
+                <span class="range-value">Medium</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="emojiLevel">Emoji Enthusiasm</label>
+            <div class="range-wrapper">
+                <input type="range" id="emojiLevel" min="1" max="5" value="3">
+                <span class="range-value">Medium</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="humbleLevel">Humblebragging Level</label>
+            <div class="range-wrapper">
+                <input type="range" id="humbleLevel" min="1" max="5" value="2">
+                <span class="range-value">Subtle</span>
+            </div>
+        </div>
+
+        <button type="button" id="generateBtn">Generate My Viral Post 🚀</button>
+
+        <div class="preview">
+            <h2>Preview</h2>
+            <div id="previewContent">
+                Your LinkedIn masterpiece will appear here...
+            </div>
+        </div>
+        <button id="copyBtn" class="copy-btn">Copy to Clipboard 📋</button>
+    </div>
+
+    <script>
+        // Templates for different listicle types
+        const templates = {
+            lessons: {
+                title: "🎯 {count} Game-Changing Lessons I Learned in {topic}",
+                intro: "After years in {topic}, here are the most valuable insights that transformed my approach:",
+                points: [
+                    "Always be learning 📚",
+                    "Embrace failure as feedback 🔄",
+                    "Build meaningful connections 🤝",
+                    "Focus on impact, not perfection 🎯",
+                    "Stay curious and adaptable 🧠",
+                    "Lead with empathy 💖",
+                    "Take calculated risks 🎲",
+                    "Celebrate small wins 🎉",
+                    "Share knowledge freely 📢",
+                    "Stay authentic 💫"
+                ]
+            },
+            mistakes: {
+                title: "⚠️ {count} Common Mistakes to Avoid in {topic}",
+                intro: "After seeing countless pitfalls in {topic}, here's what you should watch out for:",
+                points: [
+                    "Rushing without planning 🏃‍♂️",
+                    "Ignoring feedback loops ↩️",
+                    "Avoiding difficult conversations 🤐",
+                    "Neglecting self-development 📚",
+                    "Following the crowd blindly 🐑",
+                    "Underestimating complexity 🔄",
+                    "Forgetting to document 📝",
+                    "Working in silos 🏢",
+                    "Resisting change 🔄",
+                    "Overlooking basics 📌"
+                ]
+            },
+            signs: {
+                title: "🎯 {count} Signs You're Ready for Your Next Big Move in {topic}",
+                intro: "Wondering if it's time to level up in {topic}? Here are the tell-tale signs:",
+                points: [
+                    "You're consistently exceeding goals 🎯",
+                    "You're teaching others naturally 👨‍🏫",
+                    "You see bigger patterns emerging 🔄",
+                    "Your current role feels comfortable 😌",
+                    "You're drawn to bigger challenges 💪",
+                    "People seek your advice 🤝",
+                    "You have a clear vision 👁️",
+                    "You're building strong networks 🕸️",
+                    "You're thinking strategically 🧠",
+                    "You're ready for more impact 🚀"
+                ]
+            }
+        };
+
+        // Buzzwords by intensity level
+        const buzzwords = [
+            ["optimize", "innovate", "leverage"],
+            ["synergy", "paradigm shift", "thought leadership"],
+            ["disruptive innovation", "growth mindset", "value proposition"],
+            ["quantum leap", "blockchain revolution", "digital transformation"],
+            ["hyper-scalable", "meta-cognitive", "exponential mindset"]
+        ];
+
+        // Emojis by enthusiasm level
+        const emojis = [
+            ["📈", "💡", "✨"],
+            ["🚀", "💪", "🎯", "✅"],
+            ["🔥", "⭐", "🌟", "💫", "🎉"],
+            ["💯", "🙌", "🎊", "🌈", "✨"],
+            ["🚀", "💫", "🔥", "⚡", "💥", "✨", "🌟"]
+        ];
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.setProperty('--tx', (Math.random() * 100 - 50) + 'px');
+            sparkle.style.setProperty('--ty', (Math.random() * -100 - 50) + 'px');
+            document.querySelector('.preview').appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        function addSparkles() {
+            const preview = document.querySelector('.preview');
+            const rect = preview.getBoundingClientRect();
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createSparkle(
+                        Math.random() * rect.width,
+                        Math.random() * rect.height
+                    );
+                }, i * 200);
+            }
+        }
+
+        function generateListicle() {
+            const type = document.getElementById('listType').value;
+            const count = parseInt(document.getElementById('itemCount').value);
+            const topic = document.getElementById('topic').value;
+            const buzzwordLevel = parseInt(document.getElementById('buzzwordLevel').value);
+            const emojiLevel = parseInt(document.getElementById('emojiLevel').value);
+            const humbleLevel = parseInt(document.getElementById('humbleLevel').value);
+
+            if (!type || !topic) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+
+            const template = templates[type];
+            if (!template) return;
+
+            let points = template.points.slice(0, count);
+
+            // Add buzzwords based on intensity
+            const selectedBuzzwords = buzzwords[buzzwordLevel - 1];
+            points = points.map(point => {
+                const buzzword = selectedBuzzwords[Math.floor(Math.random() * selectedBuzzwords.length)];
+                return point.replace(/\b(in|for|to)\b/, `$1 ${buzzword}`);
+            });
+
+            // Add emojis based on enthusiasm
+            const selectedEmojis = emojis[emojiLevel - 1];
+            points = points.map(point => {
+                const emoji = selectedEmojis[Math.floor(Math.random() * selectedEmojis.length)];
+                return `${point} ${emoji}`;
+            });
+
+            // Generate the post
+            let post = template.title.replace('{count}', count).replace('{topic}', topic) + '\n\n';
+            post += template.intro.replace('{topic}', topic) + '\n\n';
+            points.forEach((point, index) => {
+                post += `${index + 1}. ${point}\n`;
+            });
+
+            // Add humble brag based on level
+            if (humbleLevel > 2) {
+                post += `\nP.S. Just sharing what worked for me while building a ${topic} team from 0 to 100+ people! 🚀`;
+            }
+
+            post += '\n\nAgree? 🤔\n\n';
+            post += `#${topic.replace(/\s+/g, '')} #CareerGrowth #Innovation`;
+
+            document.getElementById('previewContent').innerText = post;
+            addSparkles();
+            updateCopyButton(true);
+        }
+
+        function updateCopyButton(active) {
+            const copyBtn = document.getElementById('copyBtn');
+            if (active) {
+                copyBtn.classList.add('active');
+            } else {
+                copyBtn.classList.remove('active');
+            }
+        }
+
+        // Generate button click handler
+        document.getElementById('generateBtn').addEventListener('click', generateListicle);
+
+        // Copy button functionality
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            if (!this.classList.contains('active')) return;
+
+            const content = document.getElementById('previewContent').innerText;
+            navigator.clipboard.writeText(content).then(() => {
+                const originalText = this.innerText;
+                this.innerText = 'Copied! ✅';
+                setTimeout(() => {
+                    this.innerText = originalText;
+                }, 2000);
+            });
+        });
+
+        // Update range value displays
+        const buzzwordLabels = ['Conservative', 'Professional', 'Medium', 'Enhanced', 'Maximum'];
+        const emojiLabels = ['Minimal', 'Casual', 'Medium', 'Enthusiastic', 'Gen-Z'];
+        const humbleLabels = ['Subtle', 'Modest', 'Balanced', 'Confident', 'LinkedIn Guru'];
+
+        function updateRangeValue(input, labels) {
+            const value = input.value;
+            input.nextElementSibling.textContent = labels[value - 1];
+        }
+
+        document.getElementById('buzzwordLevel').addEventListener('input', function() {
+            updateRangeValue(this, buzzwordLabels);
+        });
+
+        document.getElementById('emojiLevel').addEventListener('input', function() {
+            updateRangeValue(this, emojiLabels);
+        });
+
+        document.getElementById('humbleLevel').addEventListener('input', function() {
+            updateRangeValue(this, humbleLabels);
+        });
+
+        // Initialize range values
+        updateRangeValue(document.getElementById('buzzwordLevel'), buzzwordLabels);
+        updateRangeValue(document.getElementById('emojiLevel'), emojiLabels);
+        updateRangeValue(document.getElementById('humbleLevel'), humbleLabels);
+
+        // Initialize copy button state
+        updateCopyButton(false);
+    </script>
+</body>
+</html>
